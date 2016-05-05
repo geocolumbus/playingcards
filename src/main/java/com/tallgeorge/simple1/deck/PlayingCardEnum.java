@@ -88,7 +88,7 @@ public enum PlayingCardEnum {
         return symbol;
     }
 
-    public static PlayingCardEnum find(String suite, String value) {
+    public static PlayingCardEnum find(String value, String suite) {
         Optional<PlayingCardEnum> p =  Arrays.stream(PlayingCardEnum.values()).filter(e -> e.getSuite().equals(suite) && e.getValue().equals(value)).findFirst();
         if (p.isPresent()) {
             return p.get();

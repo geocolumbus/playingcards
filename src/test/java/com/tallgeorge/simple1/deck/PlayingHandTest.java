@@ -30,4 +30,19 @@ public class PlayingHandTest {
         IntStream.range(0, 3).forEach(i -> deck.add(hand.pullFromTop()));
         assertEquals("Hand has two cards after adding five and removing three.", 2, hand.getSize());
     }
+
+    @Test
+    public void canPrintOutHand() {
+        Hand hand = new PlayingHand();
+        hand.add(PlayingCardEnum.ACE_CLUB);
+        hand.add(PlayingCardEnum.KING_DIAMOND);
+        assertEquals("Should print out hand", "A♣ K♦", hand.toString());
+    }
+
+    @Test
+    public void canFindCard() {
+        Hand hand = new PlayingHand();
+        hand.add("ace","spade");
+        assertEquals("Should add by description.",PlayingCardEnum.ACE_SPADE,hand.get(0));
+    }
 }
