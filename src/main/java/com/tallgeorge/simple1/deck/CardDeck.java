@@ -9,14 +9,14 @@ import java.util.stream.IntStream;
 
 public class CardDeck implements Deck {
 
-    private List<Card> deck = new ArrayList<>();
+    private List<PlayingCardEnum> deck = new ArrayList<>();
 
     public CardDeck() {
-        this.deck = IntStream.range(0, 52).boxed().map(PlayingCard::new).collect(Collectors.toList());
+        this.deck = IntStream.range(0, 52).boxed().map(i -> PlayingCardEnum.values()[i]).collect(Collectors.toList());
     }
 
     @Override
-    public Card get(int i) {
+    public PlayingCardEnum get(int i) {
         return this.deck.get(i);
     }
 
@@ -32,14 +32,14 @@ public class CardDeck implements Deck {
     }
 
     @Override
-    public Card pullFromTop() {
-        Card playingCard = deck.get(0);
+    public PlayingCardEnum pullFromTop() {
+        PlayingCardEnum playingCard = deck.get(0);
         deck.remove(0);
         return playingCard;
     }
 
     @Override
-    public void add(Card c) {
+    public void add(PlayingCardEnum c) {
         if (this.isDuplicate(c)) {
             throw new IndexOutOfBoundsException(String.format("Cannot add duplicate card %s to the deck", c));
         }
@@ -51,7 +51,7 @@ public class CardDeck implements Deck {
      * @param newCard
      * @return
      */
-    private boolean isDuplicate(Card newCard) {
+    private boolean isDuplicate(PlayingCardEnum newCard) {
         return deck.stream().filter(card -> card.equals(newCard)).count() > 0;
     }
 

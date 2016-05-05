@@ -2,9 +2,9 @@ package com.tallgeorge.simple1.deck;
 
 public interface Deck {
 
-    Card get(int i);
+    PlayingCardEnum get(int i);
     void shuffle();
     int size();
-    Card pullFromTop();
-    void add(Card c);
+    PlayingCardEnum pullFromTop();
+    void add(PlayingCardEnum c);
 }

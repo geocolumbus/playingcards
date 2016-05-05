@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="11" failures="0" name="com.tallgeorge.simple1.deck.CardDeckTest" time="0.073" errors="0" skipped="0">
+<testsuite tests="10" failures="0" name="com.tallgeorge.simple1.deck.PokerHandTest" time="0" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home/jre/lib"/>
@@ -61,15 +61,14 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="com.tallgeorge.simple1.deck.CardDeckTest" name="first13CardsShouldBeInOrder" time="0.055"/>
-  <testcase classname="com.tallgeorge.simple1.deck.CardDeckTest" name="shuffledDeckIsOutOfOrder" time="0.005"/>
-  <testcase classname="com.tallgeorge.simple1.deck.CardDeckTest" name="shuffledDeckHasAllCards" time="0.004"/>
-  <testcase classname="com.tallgeorge.simple1.deck.CardDeckTest" name="removingACardReturnsTheCard" time="0"/>
-  <testcase classname="com.tallgeorge.simple1.deck.CardDeckTest" name="removingACardSetsTheDeckSizeTo51" time="0.001"/>
-  <testcase classname="com.tallgeorge.simple1.deck.CardDeckTest" name="cannotAddDuplicateCard" time="0.001"/>
-  <testcase classname="com.tallgeorge.simple1.deck.CardDeckTest" name="fourth13CardsShouldBeInOrder" time="0.001"/>
-  <testcase classname="com.tallgeorge.simple1.deck.CardDeckTest" name="suitesAreInCorrectOrder" time="0.003"/>
-  <testcase classname="com.tallgeorge.simple1.deck.CardDeckTest" name="displayCards" time="0.002"/>
-  <testcase classname="com.tallgeorge.simple1.deck.CardDeckTest" name="second13CardsShouldBeInOrder" time="0"/>
-  <testcase classname="com.tallgeorge.simple1.deck.CardDeckTest" name="third13CardsShouldBeInOrder" time="0.001"/>
+  <testcase classname="com.tallgeorge.simple1.deck.PokerHandTest" name="detectsStraight" time="0"/>
+  <testcase classname="com.tallgeorge.simple1.deck.PokerHandTest" name="detectsHighCard" time="0"/>
+  <testcase classname="com.tallgeorge.simple1.deck.PokerHandTest" name="detectsFourOfAKind" time="0"/>
+  <testcase classname="com.tallgeorge.simple1.deck.PokerHandTest" name="detectsFlush" time="0"/>
+  <testcase classname="com.tallgeorge.simple1.deck.PokerHandTest" name="detectsOnePair" time="0"/>
+  <testcase classname="com.tallgeorge.simple1.deck.PokerHandTest" name="detectsThreeOfAKind" time="0"/>
+  <testcase classname="com.tallgeorge.simple1.deck.PokerHandTest" name="detectsTwoPair" time="0"/>
+  <testcase classname="com.tallgeorge.simple1.deck.PokerHandTest" name="detectsFullHouse" time="0"/>
+  <testcase classname="com.tallgeorge.simple1.deck.PokerHandTest" name="detectsRoyalFlush" time="0"/>
+  <testcase classname="com.tallgeorge.simple1.deck.PokerHandTest" name="detectsStraightFlush" time="0"/>
 </testsuite>

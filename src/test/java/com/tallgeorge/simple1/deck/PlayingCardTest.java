@@ -11,28 +11,18 @@ public class PlayingCardTest {
 
     @Test
     public void cardIndexCorrect() {
-        Card threeOfClubs = new PlayingCard(28);
-        assertTrue("Card 28 is three of clubs", threeOfClubs.getSuite().equals("club") && threeOfClubs.getValue().equals("three"));
-        assertTrue("Card 28 returns index of 28", threeOfClubs.getIndex() == 28);
-    }
-
-    @Test
-    public void cardIndexReturns() {
-        Card threeOfClubs = new PlayingCard(28);
-        assertTrue("Card 28 returns index of 28", threeOfClubs.getIndex() == 28);
-    }
-
-    @Test
-    public void cardPrintsValue() {
-        Card threeOfClubs = new PlayingCard(28);
-        assertEquals("ThreeOfClubsPrintsProperly", "3♣", threeOfClubs.toString());
+        PlayingCardEnum threeOfClubs = PlayingCardEnum.values()[28];
+        assertEquals("Card 28 has correct value","three",threeOfClubs.getValue());
+        assertEquals("Card 28 has correct suite","club",threeOfClubs.getSuite());
+        assertEquals("Card 28 has correct valueabbr","3",threeOfClubs.getValueAbbr());
+        assertEquals("Card 28 has correct symbol","3♣",threeOfClubs.getSymbol());
     }
 
     @Test
     public void equalsMethodWorks() {
-        Card threeOfClubs = new PlayingCard(28);
-        Card fourOfClubs = new PlayingCard(29);
-        assertTrue(threeOfClubs.equals(threeOfClubs));
-        assertFalse(threeOfClubs.equals(fourOfClubs));
+        PlayingCardEnum threeOfClubs = PlayingCardEnum.values()[28];
+        PlayingCardEnum fourOfClubs = PlayingCardEnum.values()[29];
+        assertTrue("Three of Clubs equals Three of Clubs",threeOfClubs.equals(threeOfClubs));
+        assertFalse("Three of Clubs not equal to four of Clubs",threeOfClubs.equals(fourOfClubs));
     }
 }

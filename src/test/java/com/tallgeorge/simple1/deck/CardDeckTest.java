@@ -24,7 +24,7 @@ public class CardDeckTest {
         Deck cardDeck = new CardDeck();
         assertArrayEquals("First 13 values are in order.",
             VALUES,
-            IntStream.range(0, 13).boxed().map(cardDeck::get).map(Card::getValue).toArray());
+            IntStream.range(0, 13).boxed().map(cardDeck::get).map(PlayingCardEnum::getValue).toArray());
     }
 
     @Test
@@ -32,7 +32,7 @@ public class CardDeckTest {
         Deck cardDeck = new CardDeck();
         assertArrayEquals("Second 13 values are in order.",
             VALUES,
-            IntStream.range(13, 26).boxed().map(cardDeck::get).map(Card::getValue).toArray());
+            IntStream.range(13, 26).boxed().map(cardDeck::get).map(PlayingCardEnum::getValue).toArray());
     }
 
     @Test
@@ -40,7 +40,7 @@ public class CardDeckTest {
         Deck cardDeck = new CardDeck();
         assertArrayEquals("Second 13 values are in order.",
             VALUES,
-            IntStream.range(26, 39).boxed().map(cardDeck::get).map(Card::getValue).toArray());
+            IntStream.range(26, 39).boxed().map(cardDeck::get).map(PlayingCardEnum::getValue).toArray());
     }
 
     @Test
@@ -48,7 +48,7 @@ public class CardDeckTest {
         Deck cardDeck = new CardDeck();
         assertArrayEquals("Second 13 values are in order.",
             VALUES,
-            IntStream.range(39, 52).boxed().map(cardDeck::get).map(Card::getValue).toArray());
+            IntStream.range(39, 52).boxed().map(cardDeck::get).map(PlayingCardEnum::getValue).toArray());
     }
 
     /**
@@ -116,7 +116,7 @@ public class CardDeckTest {
     @Test
     public void removingACardReturnsTheCard() {
         Deck cardDeck = new CardDeck();
-        Card playingCard = cardDeck.pullFromTop();
+        PlayingCardEnum playingCard = cardDeck.pullFromTop();
         assertTrue("Ace of spades was pulled off the top of the deck",
             playingCard.getSuite().equals("spade") && playingCard.getValue().equals("ace"));
     }
@@ -127,7 +127,7 @@ public class CardDeckTest {
     @Test(expected=IndexOutOfBoundsException.class)
     public void cannotAddDuplicateCard() {
         Deck cardDeck = new CardDeck();
-        Card playingCard = new PlayingCard(0);
+        PlayingCardEnum playingCard = PlayingCardEnum.values()[0];
         cardDeck.add(playingCard);
     }
 

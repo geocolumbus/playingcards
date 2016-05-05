@@ -6,10 +6,10 @@ import java.util.function.IntConsumer;
 
 public class PlayingHand implements Hand {
 
-    private final List<Card> hand = new ArrayList<>();
+    private final List<PlayingCardEnum> hand = new ArrayList<>();
 
     @Override
-    public IntConsumer add(Card card) {
+    public IntConsumer add(PlayingCardEnum card) {
         hand.add(card);
         return null;
     }
@@ -20,8 +20,8 @@ public class PlayingHand implements Hand {
     }
 
     @Override
-    public Card pullFromTop() {
-        Card playingCard = hand.get(0);
+    public PlayingCardEnum pullFromTop() {
+        PlayingCardEnum playingCard = hand.get(0);
         hand.remove(0);
         return playingCard;
     }
