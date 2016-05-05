@@ -3,7 +3,6 @@ package com.tallgeorge.simple1;
 import com.tallgeorge.simple1.deck.CardDeck;
 import com.tallgeorge.simple1.deck.Deck;
 import com.tallgeorge.simple1.deck.Hand;
-import com.tallgeorge.simple1.deck.PlayingHand;
 import com.tallgeorge.simple1.deck.PokerHandEnum;
 
 /**
