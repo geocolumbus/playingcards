@@ -48,11 +48,23 @@ public class CardDeck implements Deck {
 
     /**
      * Detect if a card is a duplicate.
-     * @param newCard
-     * @return
+     * @param newCard a playing card
+     * @return true if it is a duplicate.
      */
     private boolean isDuplicate(PlayingCardEnum newCard) {
         return deck.stream().filter(card -> card.equals(newCard)).count() > 0;
+    }
+
+    /**
+     * Deal x number of cards off the top of the deck into a new hand.
+     * @param numberOfCards the number of cards to deal.
+     * @return the hand containing the dealt cards.
+     */
+    @Override
+    public Hand deal(int numberOfCards) {
+        Hand hand = new PlayingHand();
+        IntStream.range(0, numberOfCards).boxed().forEach(i -> hand.add(this.pullFromTop()));
+        return hand;
     }
 
     @Override

@@ -131,6 +131,14 @@ public class CardDeckTest {
         cardDeck.add(playingCard);
     }
 
+    @Test
+    public void canDealFiveCards() {
+        Deck cardDeck = new CardDeck();
+        Hand hand = cardDeck.deal(5);
+        assertEquals("Hand has five cards",5,hand.getSize());
+        assertEquals("Hand is first five cards","A♠ 2♠ 3♠ 4♠ 5♠",hand.toString());
+    }
+
     /**
      * Print the deck contents using card symbols
      */

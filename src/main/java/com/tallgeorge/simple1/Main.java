@@ -11,15 +11,11 @@ import com.tallgeorge.simple1.deck.PokerHandEnum;
  */
 public class Main {
     public static void main(String[] args) {
-        for (int i=0; i<2000000; i++) {
+        for (int i=0; i<1000; i++) {
             Deck deck = new CardDeck();
             deck.shuffle();
-            Hand hand = new PlayingHand();
-            hand.add(deck.pullFromTop());
-            hand.add(deck.pullFromTop());
-            hand.add(deck.pullFromTop());
-            hand.add(deck.pullFromTop());
-            hand.add(deck.pullFromTop());
+            Hand hand = deck.deal(5);
+            System.out.println(hand);
             if (PokerHandEnum.find(hand) == PokerHandEnum.ROYAL_FLUSH) {
                 System.out.println(i + " " + hand);
             }

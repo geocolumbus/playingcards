@@ -7,4 +7,5 @@ public interface Deck {
     int size();
     PlayingCardEnum pullFromTop();
     void add(PlayingCardEnum c);
+    Hand deal(int i);
 }
