@@ -27,6 +27,12 @@ public enum PokerHandEnum {
         this.score = score;
     }
 
+    /**
+     * Finds a poker hand type from a hand of five cards
+     *
+     * @param hand a poker hand
+     * @return poker hand type
+     */
     public static PokerHandEnum find(Hand hand) {
         PokerHandEnum p = findRoyalFlush(hand);
         if (p != PokerHandEnum.GARBAGE) return p;
@@ -34,9 +40,87 @@ public enum PokerHandEnum {
         p = findStraightFlush(hand);
         if (p != PokerHandEnum.GARBAGE) return p;
 
+        p = findFourOfAKind(hand);
+        if (p != PokerHandEnum.GARBAGE) return p;
+
+        p = findFullHouse(hand);
+        if (p != PokerHandEnum.GARBAGE) return p;
+
+        p = findFlush(hand);
+        if (p != PokerHandEnum.GARBAGE) return p;
+
         return p;
     }
 
+    /**
+     * Detects a flush
+     *
+     * @param hand a hand of 5 cards
+     * @return FLUSH if detected, otherwise GARBAGE
+     */
+    private static PokerHandEnum findFlush(Hand hand) {
+        if (hand.get(0).getSuite().equals(hand.get(1).getSuite())
+            && hand.get(1).getSuite().equals(hand.get(2).getSuite())
+            && hand.get(2).getSuite().equals(hand.get(3).getSuite())
+            && hand.get(3).getSuite().equals(hand.get(4).getSuite())
+            ) {
+            PokerHandEnum p = PokerHandEnum.FLUSH;
+            p.setScore(hand.get(4).getRank());
+            return p;
+        }
+        return PokerHandEnum.GARBAGE;
+    }
+
+    /**
+     * Detects a full house
+     *
+     * @param hand a hand of 5 cards
+     * @return FULL_HOUSE if detected, otherwise GARBAGE
+     */
+    private static PokerHandEnum findFullHouse(Hand hand) {
+        if ((hand.get(0).getRank() == hand.get(1).getRank()
+            && hand.get(1).getRank() == hand.get(2).getRank()
+            && hand.get(3).getRank() == hand.get(4).getRank())
+            || (hand.get(0).getRank() == hand.get(1).getRank()
+            && hand.get(2).getRank() == hand.get(3).getRank()
+            && hand.get(3).getRank() == hand.get(4).getRank()
+        )) {
+            PokerHandEnum p = PokerHandEnum.FULL_HOUSE;
+            p.setScore(hand.get(4).getRank());
+            return p;
+        }
+        return PokerHandEnum.GARBAGE;
+    }
+
+    /**
+     * Detects four of a kind
+     *
+     * @param hand a hand of 5 cards
+     * @return FOUR_OF_A_KIND if detected, otherwise GARBAGE
+     */
+    private static PokerHandEnum findFourOfAKind(Hand hand) {
+        if (hand.get(0).getRank() == hand.get(1).getRank()
+            && hand.get(1).getRank() == hand.get(2).getRank()
+            && hand.get(2).getRank() == hand.get(3).getRank()) {
+            PokerHandEnum p = PokerHandEnum.FOUR_OF_A_KIND;
+            p.setScore(hand.get(4).getRank());
+            return p;
+        } else if (hand.get(1).getRank() == hand.get(2).getRank()
+            && hand.get(2).getRank() == hand.get(3).getRank()
+            && hand.get(3).getRank() == hand.get(4).getRank()) {
+            PokerHandEnum p = PokerHandEnum.FOUR_OF_A_KIND;
+            p.setScore(hand.get(0).getRank());
+            return p;
+        }
+        return PokerHandEnum.GARBAGE;
+    }
+
+    /**
+     * Detects a straight flush
+     *
+     * @param hand a hand of 5 cards
+     * @return STRAIGHT_FLUSH if detected, otherwise GARBAGE
+     */
     private static PokerHandEnum findStraightFlush(Hand hand) {
         if (hand.get(0).ordinal() == hand.get(1).ordinal() - 1
             && hand.get(1).ordinal() == hand.get(2).ordinal() - 1
@@ -54,24 +138,30 @@ public enum PokerHandEnum {
         return PokerHandEnum.GARBAGE;
     }
 
+    /**
+     * Detects a royal flush
+     *
+     * @param hand a hand of 5 cards
+     * @return ROYAL_FLUSH if detected, otherwise GARBAGE
+     */
     private static PokerHandEnum findRoyalFlush(Hand hand) {
         if (
-            hand.get(0).getRank()==0
-                && hand.get(1).getRank()==9
-                && hand.get(2).getRank()==10
-                && hand.get(3).getRank()==11
-                && hand.get(4).getRank()==12
+            hand.get(0).getRank() == 0
+                && hand.get(1).getRank() == 9
+                && hand.get(2).getRank() == 10
+                && hand.get(3).getRank() == 11
+                && hand.get(4).getRank() == 12
                 && hand.get(0).getSuite().equals(hand.get(1).getSuite())
                 && hand.get(1).getSuite().equals(hand.get(2).getSuite())
                 && hand.get(2).getSuite().equals(hand.get(3).getSuite())
                 && hand.get(3).getSuite().equals(hand.get(4).getSuite())
             ) {
             PokerHandEnum p = PokerHandEnum.ROYAL_FLUSH;
-            if (hand.get(1).getSuite()=="club") {
+            if (hand.get(1).getSuite() == "club") {
                 p.setScore(3);
-            } else if (hand.get(1).getSuite()=="diamond") {
+            } else if (hand.get(1).getSuite() == "diamond") {
                 p.setScore(2);
-            } else if (hand.get(1).getSuite()=="heart") {
+            } else if (hand.get(1).getSuite() == "heart") {
                 p.setScore(1);
             } else {
                 p.setScore(0);
