@@ -49,7 +49,109 @@ public enum PokerHandEnum {
         p = findFlush(hand);
         if (p != PokerHandEnum.GARBAGE) return p;
 
+        p = findStraight(hand);
+        if (p != PokerHandEnum.GARBAGE) return p;
+
+        p = findThreeOfAKind(hand);
+        if (p != PokerHandEnum.GARBAGE) return p;
+
+        p = findTwoPair(hand);
+        if (p != PokerHandEnum.GARBAGE) return p;
+
+        p = findOnePair(hand);
+        if (p != PokerHandEnum.GARBAGE) return p;
+
+        p = findHighCard(hand);
+        if (p != PokerHandEnum.GARBAGE) return p;
+
         return p;
+    }
+
+    /**
+     * Detect high card in garbage hand.
+     * @param hand a hand of 5 cards
+     * @return HIGH_CARD if detected
+     */
+    private static PokerHandEnum findHighCard(Hand hand) {
+        PokerHandEnum p = PokerHandEnum.HIGH_CARD;
+        p.setScore(hand.get(4).getRank());
+        return p;
+    }
+
+    /**
+     * Detect one pair
+     *
+     * @param hand a hand of 5 cards
+     * @return ONE_PAIR if detected, otherwise GARBAGE
+     */
+    private static PokerHandEnum findOnePair(Hand hand) {
+        if (hand.get(0).getRank() == hand.get(1).getRank()
+            || hand.get(1).getRank() == hand.get(2).getRank()
+            || hand.get(2).getRank() == hand.get(3).getRank()
+            || hand.get(3).getRank() == hand.get(4).getRank()) {
+            PokerHandEnum p = PokerHandEnum.ONE_PAIR;
+            p.setScore(hand.get(4).getRank());
+            return p;
+        }
+            return PokerHandEnum.GARBAGE;
+    }
+
+    /**
+     * Detect two pairs
+     *
+     * @param hand a hand of 5 cards.
+     * @return TWO_PAIR if detected, otherwise GARBAGE
+     */
+    private static PokerHandEnum findTwoPair(Hand hand) {
+        if ((hand.get(0).getRank() == hand.get(1).getRank()
+            && hand.get(2).getRank() == hand.get(3).getRank())
+            || ((hand.get(0).getRank() == hand.get(1).getRank()
+            && hand.get(3).getRank() == hand.get(4).getRank()))
+            || ((hand.get(1).getRank() == hand.get(2).getRank()
+            && hand.get(3).getRank() == hand.get(4).getRank()))) {
+            PokerHandEnum p = PokerHandEnum.TWO_PAIR;
+            p.setScore(hand.get(4).getRank());
+            return p;
+        }
+        return PokerHandEnum.GARBAGE;
+    }
+
+    /**
+     * Detect three of a kind.
+     *
+     * @param hand a hand of 5 cards
+     * @return THREE_OF_A_KIND if detected, otherwise GARBAGE
+     */
+    private static PokerHandEnum findThreeOfAKind(Hand hand) {
+        if ((hand.get(0).getRank() == hand.get(1).getRank()
+            && hand.get(1).getRank() == hand.get(2).getRank())
+            || (hand.get(1).getRank() == hand.get(2).getRank()
+            && hand.get(2).getRank() == hand.get(3).getRank())
+            || (hand.get(2).getRank() == hand.get(3).getRank()
+            && hand.get(3).getRank() == hand.get(4).getRank())) {
+            PokerHandEnum p = PokerHandEnum.THREE_OF_A_KIND;
+            p.setScore(hand.get(4).getRank());
+            return p;
+        }
+        return PokerHandEnum.GARBAGE;
+    }
+
+    /**
+     * Detects a straight.
+     *
+     * @param hand a hand of 5 cards
+     * @return STRAIGHT if detected, otherwise GARBAGE
+     */
+    private static PokerHandEnum findStraight(Hand hand) {
+        if (hand.get(0).getRank() == hand.get(1).getRank() - 1
+            && hand.get(1).getRank() == hand.get(2).getRank() - 1
+            && hand.get(2).getRank() == hand.get(3).getRank() - 1
+            && hand.get(3).getRank() == hand.get(4).getRank() - 1) {
+            PokerHandEnum p = PokerHandEnum.STRAIGHT;
+            p.setScore(hand.get(4).getRank());
+            return p;
+        }
+        return PokerHandEnum.GARBAGE;
     }
 
     /**
