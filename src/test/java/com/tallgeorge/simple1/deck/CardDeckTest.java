@@ -124,7 +124,7 @@ public class CardDeckTest {
     /**
      * You cannot add a duplicate card
      */
-    @Test(expected=IndexOutOfBoundsException.class)
+    @Test(expected = IndexOutOfBoundsException.class)
     public void cannotAddDuplicateCard() {
         Deck cardDeck = new CardDeck();
         PlayingCardEnum playingCard = PlayingCardEnum.values()[0];
@@ -135,8 +135,8 @@ public class CardDeckTest {
     public void canDealFiveCards() {
         Deck cardDeck = new CardDeck();
         Hand hand = cardDeck.deal(5);
-        assertEquals("Hand has five cards",5,hand.getSize());
-        assertEquals("Hand is first five cards","A♠ 2♠ 3♠ 4♠ 5♠",hand.toString());
+        assertEquals("Hand has five cards", 5, hand.getSize());
+        assertEquals("Hand is first five cards", " A♠  2♠  3♠  4♠  5♠", hand.toString());
     }
 
     /**
@@ -146,9 +146,9 @@ public class CardDeckTest {
     public void displayCards() {
         Deck cardDeck = new CardDeck();
         assertEquals("Deck is displayed with symbols",
-            "A♠ 2♠ 3♠ 4♠ 5♠ 6♠ 7♠ 8♠ 9♠ 10♠ J♠ Q♠ K♠ " +
-                "A♦ 2♦ 3♦ 4♦ 5♦ 6♦ 7♦ 8♦ 9♦ 10♦ J♦ Q♦ K♦ " +
-                "A♣ 2♣ 3♣ 4♣ 5♣ 6♣ 7♣ 8♣ 9♣ 10♣ J♣ Q♣ K♣ " +
-                "A♥ 2♥ 3♥ 4♥ 5♥ 6♥ 7♥ 8♥ 9♥ 10♥ J♥ Q♥ K♥", cardDeck.toString());
+            " A♠  2♠  3♠  4♠  5♠  6♠  7♠  8♠  9♠ 10♠  J♠  Q♠  K♠ " +
+                " A♦  2♦  3♦  4♦  5♦  6♦  7♦  8♦  9♦ 10♦  J♦  Q♦  K♦ " +
+                " A♣  2♣  3♣  4♣  5♣  6♣  7♣  8♣  9♣ 10♣  J♣  Q♣  K♣ " +
+                " A♥  2♥  3♥  4♥  5♥  6♥  7♥  8♥  9♥ 10♥  J♥  Q♥  K♥", cardDeck.toString());
     }
 }

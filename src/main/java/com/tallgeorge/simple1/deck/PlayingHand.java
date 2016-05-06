@@ -11,11 +11,20 @@ public class PlayingHand implements Hand {
     @Override
     public void add(PlayingCardEnum card) {
         this.hand.add(card);
+        this.sort();
     }
 
     @Override
     public void add(String value, String suite) {
-        this.hand.add(PlayingCardEnum.find(suite, value));
+        this.hand.add(PlayingCardEnum.find(value, suite));
+        this.sort();
+    }
+
+    private void sort() {
+        if (this.hand.size()<2) {
+            return;
+        }
+        this.hand = this.hand.stream().sorted((a, b) -> a.getRank() - b.getRank()).collect(Collectors.toList());
     }
 
     @Override

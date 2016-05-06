@@ -1,8 +1,5 @@
 package com.tallgeorge.simple1.deck;
 
-/**
- * Created by campbelg on 5/5/16.
- */
 public enum PokerHandEnum {
     ROYAL_FLUSH(0),
     STRAIGHT_FLUSH(0),
@@ -32,53 +29,56 @@ public enum PokerHandEnum {
 
     public static PokerHandEnum find(Hand hand) {
         PokerHandEnum p = findRoyalFlush(hand);
-        if (p != null) {
-            return p;
-        } else return null;
+        if (p != PokerHandEnum.GARBAGE) return p;
+
+        p = findStraightFlush(hand);
+        if (p != PokerHandEnum.GARBAGE) return p;
+
+        return p;
+    }
+
+    private static PokerHandEnum findStraightFlush(Hand hand) {
+        if (hand.get(0).ordinal() == hand.get(1).ordinal() - 1
+            && hand.get(1).ordinal() == hand.get(2).ordinal() - 1
+            && hand.get(2).ordinal() == hand.get(3).ordinal() - 1
+            && hand.get(3).ordinal() == hand.get(4).ordinal() - 1
+            && hand.get(0).getSuite().equals(hand.get(1).getSuite())
+            && hand.get(1).getSuite().equals(hand.get(2).getSuite())
+            && hand.get(2).getSuite().equals(hand.get(3).getSuite())
+            && hand.get(3).getSuite().equals(hand.get(4).getSuite())
+            ) {
+            PokerHandEnum p = PokerHandEnum.STRAIGHT_FLUSH;
+            p.setScore(hand.get(4).getRank());
+            return PokerHandEnum.STRAIGHT_FLUSH;
+        }
+        return PokerHandEnum.GARBAGE;
     }
 
     private static PokerHandEnum findRoyalFlush(Hand hand) {
         if (
-            hand.get(0).equals(PlayingCardEnum.TEN_CLUB)
-                && hand.get(1).equals(PlayingCardEnum.JACK_CLUB)
-                && hand.get(2).equals(PlayingCardEnum.QUEEN_CLUB)
-                && hand.get(3).equals(PlayingCardEnum.KING_CLUB)
-                && hand.get(4).equals(PlayingCardEnum.ACE_CLUB)
+            hand.get(0).getRank()==0
+                && hand.get(1).getRank()==9
+                && hand.get(2).getRank()==10
+                && hand.get(3).getRank()==11
+                && hand.get(4).getRank()==12
+                && hand.get(0).getSuite().equals(hand.get(1).getSuite())
+                && hand.get(1).getSuite().equals(hand.get(2).getSuite())
+                && hand.get(2).getSuite().equals(hand.get(3).getSuite())
+                && hand.get(3).getSuite().equals(hand.get(4).getSuite())
             ) {
             PokerHandEnum p = PokerHandEnum.ROYAL_FLUSH;
+            if (hand.get(1).getSuite()=="club") {
+                p.setScore(3);
+            } else if (hand.get(1).getSuite()=="diamond") {
+                p.setScore(2);
+            } else if (hand.get(1).getSuite()=="heart") {
+                p.setScore(1);
+            } else {
+                p.setScore(0);
+            }
             return p;
-        } else if (
-            hand.get(0).equals(PlayingCardEnum.TEN_DIAMOND)
-                && hand.get(1).equals(PlayingCardEnum.JACK_DIAMOND)
-                && hand.get(2).equals(PlayingCardEnum.QUEEN_DIAMOND)
-                && hand.get(3).equals(PlayingCardEnum.KING_DIAMOND)
-                && hand.get(4).equals(PlayingCardEnum.ACE_DIAMOND)
-            ) {
-            PokerHandEnum p = PokerHandEnum.ROYAL_FLUSH;
-            p.setScore(1);
-            return p;
-        } else if (
-            hand.get(0).equals(PlayingCardEnum.TEN_HEART)
-                && hand.get(1).equals(PlayingCardEnum.JACK_HEART)
-                && hand.get(2).equals(PlayingCardEnum.QUEEN_HEART)
-                && hand.get(3).equals(PlayingCardEnum.KING_HEART)
-                && hand.get(4).equals(PlayingCardEnum.ACE_HEART)
-            ) {
-            PokerHandEnum p = PokerHandEnum.ROYAL_FLUSH;
-            p.setScore(2);
-            return p;
-        } else if (
-            hand.get(0).equals(PlayingCardEnum.TEN_SPADE)
-                && hand.get(1).equals(PlayingCardEnum.JACK_SPADE)
-                && hand.get(2).equals(PlayingCardEnum.QUEEN_SPADE)
-                && hand.get(3).equals(PlayingCardEnum.KING_SPADE)
-                && hand.get(4).equals(PlayingCardEnum.ACE_SPADE)
-            ) {
-            PokerHandEnum p = PokerHandEnum.ROYAL_FLUSH;
-            p.setScore(3);
-            return p;
-        } else {
-            return PokerHandEnum.GARBAGE;
         }
+        return PokerHandEnum.GARBAGE;
+
     }
 }
