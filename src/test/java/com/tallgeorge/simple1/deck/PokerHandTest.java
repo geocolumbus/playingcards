@@ -51,7 +51,7 @@ public class PokerHandTest {
         hand.add(PlayingCardEnum.THREE_DIAMOND);
         hand.add(PlayingCardEnum.TWO_CLUB);
         assertEquals("Should detect Four of a Kind, low extra card.", FOUR_OF_A_KIND, PokerHandEnum.find(hand));
-        assertEquals("Should be score of one.", 1, PokerHandEnum.find(hand).getScore());
+        assertEquals("Should be score of two.", 2, PokerHandEnum.find(hand).getScore());
     }
 
     @Test

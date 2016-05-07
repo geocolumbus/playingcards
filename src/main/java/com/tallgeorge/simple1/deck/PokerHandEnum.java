@@ -69,12 +69,13 @@ public enum PokerHandEnum {
 
     /**
      * Detect high card in garbage hand.
+     *
      * @param hand a hand of 5 cards
      * @return HIGH_CARD if detected
      */
     private static PokerHandEnum findHighCard(Hand hand) {
         PokerHandEnum p = PokerHandEnum.HIGH_CARD;
-        p.setScore(hand.get(4).getRank());
+        p.setScore(calculateScore(hand));
         return p;
     }
 
@@ -90,10 +91,22 @@ public enum PokerHandEnum {
             || hand.get(2).getRank() == hand.get(3).getRank()
             || hand.get(3).getRank() == hand.get(4).getRank()) {
             PokerHandEnum p = PokerHandEnum.ONE_PAIR;
-            p.setScore(hand.get(4).getRank());
+            p.setScore(calculateScore(hand));
             return p;
         }
-            return PokerHandEnum.GARBAGE;
+        return PokerHandEnum.GARBAGE;
+    }
+
+    /**
+     * Score the hand, in case two hands are the same.
+     *
+     * @param hand
+     * @return
+     */
+    private static int calculateScore(Hand hand) {
+        int score = hand.get(4).getRank();
+        if (score == 0) score = 13; // Aces high
+        return score;
     }
 
     /**
@@ -110,7 +123,7 @@ public enum PokerHandEnum {
             || ((hand.get(1).getRank() == hand.get(2).getRank()
             && hand.get(3).getRank() == hand.get(4).getRank()))) {
             PokerHandEnum p = PokerHandEnum.TWO_PAIR;
-            p.setScore(hand.get(4).getRank());
+            p.setScore(calculateScore(hand));
             return p;
         }
         return PokerHandEnum.GARBAGE;
@@ -130,7 +143,7 @@ public enum PokerHandEnum {
             || (hand.get(2).getRank() == hand.get(3).getRank()
             && hand.get(3).getRank() == hand.get(4).getRank())) {
             PokerHandEnum p = PokerHandEnum.THREE_OF_A_KIND;
-            p.setScore(hand.get(4).getRank());
+            p.setScore(calculateScore(hand));
             return p;
         }
         return PokerHandEnum.GARBAGE;
@@ -148,7 +161,7 @@ public enum PokerHandEnum {
             && hand.get(2).getRank() == hand.get(3).getRank() - 1
             && hand.get(3).getRank() == hand.get(4).getRank() - 1) {
             PokerHandEnum p = PokerHandEnum.STRAIGHT;
-            p.setScore(hand.get(4).getRank());
+            p.setScore(calculateScore(hand));
             return p;
         }
         return PokerHandEnum.GARBAGE;
@@ -167,7 +180,7 @@ public enum PokerHandEnum {
             && hand.get(3).getSuite().equals(hand.get(4).getSuite())
             ) {
             PokerHandEnum p = PokerHandEnum.FLUSH;
-            p.setScore(hand.get(4).getRank());
+            p.setScore(calculateScore(hand));
             return p;
         }
         return PokerHandEnum.GARBAGE;
@@ -188,7 +201,7 @@ public enum PokerHandEnum {
             && hand.get(3).getRank() == hand.get(4).getRank()
         )) {
             PokerHandEnum p = PokerHandEnum.FULL_HOUSE;
-            p.setScore(hand.get(4).getRank());
+            p.setScore(calculateScore(hand));
             return p;
         }
         return PokerHandEnum.GARBAGE;
@@ -211,7 +224,7 @@ public enum PokerHandEnum {
             && hand.get(2).getRank() == hand.get(3).getRank()
             && hand.get(3).getRank() == hand.get(4).getRank()) {
             PokerHandEnum p = PokerHandEnum.FOUR_OF_A_KIND;
-            p.setScore(hand.get(0).getRank());
+            p.setScore(calculateScore(hand));
             return p;
         }
         return PokerHandEnum.GARBAGE;
@@ -234,7 +247,7 @@ public enum PokerHandEnum {
             && hand.get(3).getSuite().equals(hand.get(4).getSuite())
             ) {
             PokerHandEnum p = PokerHandEnum.STRAIGHT_FLUSH;
-            p.setScore(hand.get(4).getRank());
+            p.setScore(calculateScore(hand));
             return PokerHandEnum.STRAIGHT_FLUSH;
         }
         return PokerHandEnum.GARBAGE;
@@ -259,11 +272,11 @@ public enum PokerHandEnum {
                 && hand.get(3).getSuite().equals(hand.get(4).getSuite())
             ) {
             PokerHandEnum p = PokerHandEnum.ROYAL_FLUSH;
-            if (hand.get(1).getSuite() == "club") {
+            if (hand.get(1).getSuite().equals("club")) {
                 p.setScore(3);
-            } else if (hand.get(1).getSuite() == "diamond") {
+            } else if (hand.get(1).getSuite().equals("diamond")) {
                 p.setScore(2);
-            } else if (hand.get(1).getSuite() == "heart") {
+            } else if (hand.get(1).getSuite().equals("heart")) {
                 p.setScore(1);
             } else {
                 p.setScore(0);
