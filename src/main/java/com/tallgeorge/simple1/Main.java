@@ -16,7 +16,7 @@ public class Main {
         for (PokerHandEnum p : PokerHandEnum.values()) {
             bin.put(p, 0);
         }
-        int total = 10_000_000;
+        int total = 1_000_000_000;
         IntStream.range(0, total).parallel().forEach(i -> {
             Deck deck = new CardDeck();
             deck.shuffle();
