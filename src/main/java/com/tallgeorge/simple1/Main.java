@@ -16,7 +16,7 @@ public class Main {
         for (PokerHandEnum p : PokerHandEnum.values()) {
             bin.put(p, 0);
         }
-        int total = 1_000_000_000;
+        int total = 10_000_000;
         IntStream.range(0, total).parallel().forEach(i -> {
             Deck deck = new CardDeck();
             deck.shuffle();
@@ -29,7 +29,7 @@ public class Main {
         bin.keySet().stream().forEach(k -> {
             double p = (bin.get(k) * 1.0) / total * 100.0;
             double o = (100 / p);
-            System.out.println(String.format("%16s  %9.6f (1 in %9.1f", k, p, o));
+            System.out.println(String.format("%16s  %9.6f (1 in %9.1f)", k, p, o));
         });
     }
 }
