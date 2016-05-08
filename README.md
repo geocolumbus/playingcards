@@ -17,5 +17,9 @@ Calculated by running one billion trials.
         TWO_PAIR   4.740185 (1 in      21)
         ONE_PAIR  40.820274 (1 in     2.4)
        HIGH_CARD  48.282166 (1 in     2.1)
-         GARBAGE   0.000000 (1 in  Infinity)
+</pre>
+
+## Odds after exchanging zero to three cards
+
+<pre>
 </pre>
