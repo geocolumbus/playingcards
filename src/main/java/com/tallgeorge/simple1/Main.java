@@ -5,7 +5,6 @@ import com.tallgeorge.simple1.deck.Deck;
 import com.tallgeorge.simple1.deck.Hand;
 import com.tallgeorge.simple1.deck.PokerHandEnum;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.stream.IntStream;
@@ -16,7 +15,7 @@ public class Main {
         for (PokerHandEnum p : PokerHandEnum.values()) {
             bin.put(p, 0);
         }
-        int total = 1_000_000_000;
+        int total = Integer.MAX_VALUE;
         IntStream.range(0, total).parallel().forEach(i -> {
             Deck deck = new CardDeck();
             deck.shuffle();
