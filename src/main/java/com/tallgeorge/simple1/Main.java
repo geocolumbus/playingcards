@@ -5,6 +5,8 @@ import com.tallgeorge.simple1.deck.Deck;
 import com.tallgeorge.simple1.deck.Hand;
 import com.tallgeorge.simple1.deck.PokerHandEnum;
 
+import java.time.Duration;
+import java.time.Instant;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.stream.IntStream;
@@ -15,7 +17,8 @@ public class Main {
         for (PokerHandEnum p : PokerHandEnum.values()) {
             bin.put(p, 0);
         }
-        int total = Integer.MAX_VALUE;
+        int total = Integer.MAX_VALUE/32;
+        Instant start = Instant.now();
         IntStream.range(0, total).parallel().forEach(i -> {
             Deck deck = new CardDeck();
             deck.shuffle();
@@ -23,12 +26,14 @@ public class Main {
             PokerHandEnum p = PokerHandEnum.find(hand);
             bin.put(p, bin.get(p) + 1);
         });
-
+        Instant stop = Instant.now();
         System.out.println("");
         bin.keySet().stream().forEach(k -> {
             double p = (bin.get(k) * 1.0) / total * 100.0;
             double o = (100 / p);
             System.out.println(String.format("%16s  %9.6f (1 in %9.1f)", k, p, o));
         });
+        Double sec =Duration.between(start,stop).toMillis()/1000.0;
+        System.out.println(String.format("\nDuration was %6.2f seconds.",sec));
     }
 }
