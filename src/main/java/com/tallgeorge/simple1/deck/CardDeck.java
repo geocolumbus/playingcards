@@ -23,7 +23,7 @@ public class CardDeck implements Deck {
     @Override
     public void shuffle() {
         Random randomGen = new Random();
-        IntStream.range(0, 1000).forEach(i -> Collections.swap(deck, randomGen.nextInt(52), randomGen.nextInt(52)));
+        IntStream.range(0, 200).forEach(i -> Collections.swap(deck, randomGen.nextInt(52), randomGen.nextInt(52)));
     }
 
     @Override

@@ -34,6 +34,9 @@ public enum PokerHandEnum {
      * @return poker hand type
      */
     public static PokerHandEnum find(Hand hand) {
+
+        hand.sort();
+
         PokerHandEnum p = findRoyalFlush(hand);
         if (p != PokerHandEnum.GARBAGE) return p;
 

@@ -5,6 +5,7 @@ import com.tallgeorge.simple1.deck.Deck;
 import com.tallgeorge.simple1.deck.Hand;
 import com.tallgeorge.simple1.deck.PokerHandEnum;
 
+import java.text.DecimalFormat;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.Map;
@@ -17,7 +18,7 @@ public class Main {
         for (PokerHandEnum p : PokerHandEnum.values()) {
             bin.put(p, 0);
         }
-        int total = Integer.MAX_VALUE/32;
+        int total = Integer.MAX_VALUE;
         Instant start = Instant.now();
         IntStream.range(0, total).parallel().forEach(i -> {
             Deck deck = new CardDeck();
@@ -33,7 +34,9 @@ public class Main {
             double o = (100 / p);
             System.out.println(String.format("%16s  %9.6f (1 in %9.1f)", k, p, o));
         });
-        Double sec =Duration.between(start,stop).toMillis()/1000.0;
-        System.out.println(String.format("\nDuration was %6.2f seconds.",sec));
+        Double sec = Duration.between(start, stop).toMillis() / 1000.0;
+        DecimalFormat formatter = new DecimalFormat("#,###");
+        System.out.println(String.format("\nDuration was %6.3f seconds for %s iterations at %5.3f usec/iteration.",
+            sec, formatter.format(total), sec / total * 1e6));
     }
 }

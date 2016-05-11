@@ -17,10 +17,10 @@ public class PlayingHand implements Hand {
     @Override
     public void add(String value, String suite) {
         this.hand.add(PlayingCardEnum.find(value, suite));
-        this.sort();
     }
 
-    private void sort() {
+    @Override
+    public void sort() {
         if (this.hand.size()<2) {
             return;
         }

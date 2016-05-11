@@ -8,4 +8,5 @@ public interface Hand {
     int getSize();
     PlayingCardEnum pullFromTop();
     PlayingCardEnum get(int i);
+    public void sort();
 }
