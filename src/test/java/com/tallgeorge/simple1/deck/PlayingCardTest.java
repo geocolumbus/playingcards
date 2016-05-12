@@ -25,4 +25,14 @@ public class PlayingCardTest {
         assertTrue("Three of Clubs equals Three of Clubs", threeOfClubs.equals(threeOfClubs));
         assertFalse("Three of Clubs not equal to four of Clubs", threeOfClubs.equals(fourOfClubs));
     }
+
+    @Test
+    public void testToString() {
+        assertEquals("Should give card name", " 8♣", PlayingCardEnum.EIGHT_CLUB.toString());
+    }
+
+    @Test
+    public void testGetRank() {
+        assertEquals("Should give the correct card rank", 7, PlayingCardEnum.EIGHT_CLUB.getRank());
+    }
 }

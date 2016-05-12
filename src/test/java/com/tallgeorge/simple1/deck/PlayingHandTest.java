@@ -39,4 +39,13 @@ public class PlayingHandTest {
         hand.add(PlayingCardEnum.THREE_HEART);
         assertEquals("Should print out hand", " A♣  3♥  K♦", hand.toString());
     }
+
+    @Test
+    public void canPullFromTop() {
+        Hand hand = new PlayingHand();
+        hand.add(PlayingCardEnum.ACE_CLUB);
+        PlayingCardEnum playingCard = hand.pullFromTop();
+        assertEquals("Should be ace of clubs", PlayingCardEnum.ACE_CLUB, playingCard);
+        assertEquals("Hand should be empty", 0, hand.getSize());
+    }
 }

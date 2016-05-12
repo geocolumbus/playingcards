@@ -23,10 +23,16 @@ public class CardDeck implements Deck {
     private static final int SHUFFLE_COUNT = 200;
 
     /**
+     * The number of cards in a dec.
+     */
+    private static final int NUMBER_OF_CARDS = 52;
+
+    /**
      * Initialize a deck of cards with 52 cards in order.
      */
     public CardDeck() {
-        this.deck = IntStream.range(0, 52).boxed().map(i -> PlayingCardEnum.values()[i]).collect(Collectors.toList());
+        this.deck = IntStream.range(0, NUMBER_OF_CARDS).boxed()
+            .map(i -> PlayingCardEnum.values()[i]).collect(Collectors.toList());
     }
 
     @Override
@@ -37,7 +43,8 @@ public class CardDeck implements Deck {
     @Override
     public final void shuffle() {
         Random randomGen = new Random();
-        IntStream.range(0, SHUFFLE_COUNT).forEach(i -> Collections.swap(deck, randomGen.nextInt(52), randomGen.nextInt(52)));
+        IntStream.range(0, SHUFFLE_COUNT)
+            .forEach(i -> Collections.swap(deck, randomGen.nextInt(52), randomGen.nextInt(NUMBER_OF_CARDS)));
     }
 
     @Override
@@ -65,7 +72,7 @@ public class CardDeck implements Deck {
      * @param newCard a playing card
      * @return true if it is a duplicate.
      */
-    private boolean isDuplicate(PlayingCardEnum newCard) {
+    private boolean isDuplicate(final PlayingCardEnum newCard) {
         return deck.stream().filter(card -> card.equals(newCard)).count() > 0;
     }
 

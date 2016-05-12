@@ -4,6 +4,7 @@ package com.tallgeorge.simple1.deck;
  * An enumeration representing standard playing cards in as-shipped order.
  */
 public enum PlayingCardEnum {
+
     ACE_SPADE("ace", "spade", "A", "A♠", 0),
     TWO_SPADE("two", "spade", "2", "2♠", 1),
     THREE_SPADE("three", "spade", "3", "3♠", 2),
