@@ -132,6 +132,14 @@ public class CardDeckTest {
     }
 
     @Test
+    public void canAddNoneDuplicateCard() {
+        Deck cardDeck = new CardDeck();
+        PlayingCardEnum playingCard = cardDeck.pullFromTop();
+        cardDeck.add(playingCard);
+        assertEquals("Deck should have 52 cards", 52, cardDeck.size());
+    }
+
+    @Test
     public void canDealFiveCards() {
         Deck cardDeck = new CardDeck();
         Hand hand = cardDeck.deal(5);
@@ -143,7 +151,7 @@ public class CardDeckTest {
      * Print the deck contents using card symbols
      */
     @Test
-    public void displayCards() {
+    public void testToString() {
         Deck cardDeck = new CardDeck();
         assertEquals("Deck is displayed with symbols",
             " A♠  2♠  3♠  4♠  5♠  6♠  7♠  8♠  9♠ 10♠  J♠  Q♠  K♠ " +

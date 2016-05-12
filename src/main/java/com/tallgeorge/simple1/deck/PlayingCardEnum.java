@@ -1,8 +1,5 @@
 package com.tallgeorge.simple1.deck;
 
-import java.util.Arrays;
-import java.util.Optional;
-
 /**
  * An enumeration representing standard playing cards in as-shipped order.
  */
