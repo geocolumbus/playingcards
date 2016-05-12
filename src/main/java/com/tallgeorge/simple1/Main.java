@@ -12,13 +12,21 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.stream.IntStream;
 
+/**
+ * Main class of the application.
+ */
 public class Main {
-    public static void main(String[] args) {
+
+    /**
+     * Main entrance to the application.
+     * @param args command line argument array.
+     */
+    public static void main(final String[] args) {
         Map<PokerHandEnum, Integer> bin = new TreeMap<>();
         for (PokerHandEnum p : PokerHandEnum.values()) {
             bin.put(p, 0);
         }
-        int total = Integer.MAX_VALUE;
+        int total = Integer.MAX_VALUE / 4096;
         Instant start = Instant.now();
         IntStream.range(0, total).parallel().forEach(i -> {
             Deck deck = new CardDeck();

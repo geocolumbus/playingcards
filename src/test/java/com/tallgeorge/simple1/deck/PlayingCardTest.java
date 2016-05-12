@@ -25,9 +25,4 @@ public class PlayingCardTest {
         assertTrue("Three of Clubs equals Three of Clubs", threeOfClubs.equals(threeOfClubs));
         assertFalse("Three of Clubs not equal to four of Clubs", threeOfClubs.equals(fourOfClubs));
     }
-
-    @Test
-    public void addByDescriptionWorks() {
-        assertEquals("Add ace of spades by description", PlayingCardEnum.ACE_SPADE, PlayingCardEnum.find("ace", "spade"));
-    }
 }

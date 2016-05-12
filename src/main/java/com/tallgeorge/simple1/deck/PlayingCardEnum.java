@@ -3,6 +3,9 @@ package com.tallgeorge.simple1.deck;
 import java.util.Arrays;
 import java.util.Optional;
 
+/**
+ * An enumeration representing standard playing cards in as-shipped order.
+ */
 public enum PlayingCardEnum {
     ACE_SPADE("ace", "spade", "A", "A♠", 0),
     TWO_SPADE("two", "spade", "2", "2♠", 1),
@@ -60,12 +63,39 @@ public enum PlayingCardEnum {
     QUEEN_HEART("queen", "heart", "Q", "Q♥", 11),
     KING_HEART("king", "heart", "K", "K♥", 12);
 
+    /**
+     * A string representation of the value.
+     */
     private final String value;
+
+    /**
+     * A string representation of the suite.
+     */
     private final String suite;
+
+    /**
+     * A string representation of the value, shortened.
+     */
     private final String valueAbbr;
+
+    /**
+     * A string representation of the value and the suite, shortened.
+     */
     private final String symbol;
+
+    /**
+     * The index of the card.
+     */
     private final int rank;
 
+    /**
+     * A playing card.
+     * @param value     a string representation of the value.
+     * @param suite     a string representation of the suite.
+     * @param valueAbbr a string representation of the value, shortened.
+     * @param symbol    a string representation of the value, shortened and the symbol.
+     * @param rank      the integer index of the card.
+     */
     PlayingCardEnum(String value, String suite, String valueAbbr, String symbol, int rank) {
         this.value = value;
         this.suite = suite;
@@ -74,33 +104,44 @@ public enum PlayingCardEnum {
         this.rank = rank;
     }
 
+    /**
+     * Get the string representation of the value.
+     * @return string, representation of the value.
+     */
     public String getValue() {
         return value;
     }
 
+    /**
+     * Get the string representation of the suites.
+     * @return string, representation of the suites.
+     */
     public String getSuite() {
         return suite;
     }
 
+    /**
+     * Get the string representation of the value, shortened.
+     * @return string, representation of the value, shortened.
+     */
     public String getValueAbbr() {
         return valueAbbr;
     }
 
+    /**
+     * Get the string representation of the value and the symbol.
+     * @return string, representation of the value, shortened and the symbol.
+     */
     public String getSymbol() {
         return symbol;
     }
 
+    /**
+     * The index of the card.
+     * @return The unique index of each card.
+     */
     public int getRank() {
         return rank;
-    }
-
-    public static PlayingCardEnum find(String value, String suite) {
-        Optional<PlayingCardEnum> p = Arrays.stream(PlayingCardEnum.values()).filter(e -> e.getSuite().equals(suite) && e.getValue().equals(value)).findFirst();
-        if (p.isPresent()) {
-            return p.get();
-        } else {
-            return null;
-        }
     }
 
     @Override

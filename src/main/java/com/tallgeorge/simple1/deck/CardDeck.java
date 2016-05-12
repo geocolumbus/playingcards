@@ -7,39 +7,53 @@ import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+/**
+ * A deck of 52 standard playing cards.
+ */
 public class CardDeck implements Deck {
 
+    /**
+     * A list of Playing Cards.
+     */
     private List<PlayingCardEnum> deck = new ArrayList<>();
 
+    /**
+     * The number of times to shuffle the deck.
+     */
+    private static final int SHUFFLE_COUNT = 200;
+
+    /**
+     * Initialize a deck of cards with 52 cards in order.
+     */
     public CardDeck() {
         this.deck = IntStream.range(0, 52).boxed().map(i -> PlayingCardEnum.values()[i]).collect(Collectors.toList());
     }
 
     @Override
-    public PlayingCardEnum get(int i) {
-        return this.deck.get(i);
+    public final PlayingCardEnum get(final int index) {
+        return this.deck.get(index);
     }
 
     @Override
-    public void shuffle() {
+    public final void shuffle() {
         Random randomGen = new Random();
-        IntStream.range(0, 200).forEach(i -> Collections.swap(deck, randomGen.nextInt(52), randomGen.nextInt(52)));
+        IntStream.range(0, SHUFFLE_COUNT).forEach(i -> Collections.swap(deck, randomGen.nextInt(52), randomGen.nextInt(52)));
     }
 
     @Override
-    public int size() {
+    public final int size() {
         return deck.size();
     }
 
     @Override
-    public PlayingCardEnum pullFromTop() {
+    public final PlayingCardEnum pullFromTop() {
         PlayingCardEnum playingCard = deck.get(0);
         deck.remove(0);
         return playingCard;
     }
 
     @Override
-    public void add(PlayingCardEnum c) {
+    public final void add(final PlayingCardEnum c) {
         if (this.isDuplicate(c)) {
             throw new IndexOutOfBoundsException(String.format("Cannot add duplicate card %s to the deck", c));
         }
@@ -61,14 +75,14 @@ public class CardDeck implements Deck {
      * @return the hand containing the dealt cards.
      */
     @Override
-    public Hand deal(int numberOfCards) {
+    public final Hand deal(final int numberOfCards) {
         Hand hand = new PlayingHand();
         IntStream.range(0, numberOfCards).boxed().forEach(i -> hand.add(this.pullFromTop()));
         return hand;
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return deck.stream().map(Object::toString).collect(Collectors.joining(" "));
     }
 }

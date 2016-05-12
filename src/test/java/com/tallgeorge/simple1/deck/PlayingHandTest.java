@@ -39,11 +39,4 @@ public class PlayingHandTest {
         hand.add(PlayingCardEnum.THREE_HEART);
         assertEquals("Should print out hand", " A♣  3♥  K♦", hand.toString());
     }
-
-    @Test
-    public void canFindCard() {
-        Hand hand = new PlayingHand();
-        hand.add("ace", "spade");
-        assertEquals("Should add by description.", PlayingCardEnum.ACE_SPADE, hand.get(0));
-    }
 }

@@ -4,48 +4,49 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * A subset of a deck that the player holds, called a hand.
+ */
 public class PlayingHand implements Hand {
 
+    /**
+     * A list of Playing Cards.
+     */
     private List<PlayingCardEnum> hand = new ArrayList<>();
 
     @Override
-    public void add(PlayingCardEnum card) {
+    public final void add(final PlayingCardEnum card) {
         this.hand.add(card);
         this.sort();
     }
 
     @Override
-    public void add(String value, String suite) {
-        this.hand.add(PlayingCardEnum.find(value, suite));
-    }
-
-    @Override
-    public void sort() {
-        if (this.hand.size()<2) {
+    public final void sort() {
+        if (this.hand.size() < 2) {
             return;
         }
         this.hand = this.hand.stream().sorted((a, b) -> a.getRank() - b.getRank()).collect(Collectors.toList());
     }
 
     @Override
-    public int getSize() {
+    public final int getSize() {
         return hand.size();
     }
 
     @Override
-    public PlayingCardEnum get(int i) {
-        return hand.get(i);
+    public final PlayingCardEnum get(final int index) {
+        return hand.get(index);
     }
 
     @Override
-    public PlayingCardEnum pullFromTop() {
+    public final PlayingCardEnum pullFromTop() {
         PlayingCardEnum playingCard = hand.get(0);
         hand.remove(0);
         return playingCard;
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return hand.stream().map(Object::toString).collect(Collectors.joining(" "));
     }
 }
