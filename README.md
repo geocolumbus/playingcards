@@ -15,7 +15,6 @@ Building out a card game framework. Working it from a strict TDD approach as an 
         TWO_PAIR   4.730096 (1 in      21.1)
         ONE_PAIR  40.158516 (1 in       2.5)
        HIGH_CARD  47.118204 (1 in       2.1)
-         GARBAGE   0.000000 (1 in  Infinity)
 
 Duration was 4878.025 seconds for 2,147,483,647 iterations at 2.272 μsec/iteration.
 </pre>
