@@ -1,11 +1,11 @@
-package com.tallgeorge.simple1.deck;
+package com.tallgeorge.playingcards.deck;
 
 import org.junit.Test;
 
-import static com.tallgeorge.simple1.deck.PokerHandEnum.FOUR_OF_A_KIND;
-import static com.tallgeorge.simple1.deck.PokerHandEnum.FULL_HOUSE;
-import static com.tallgeorge.simple1.deck.PokerHandEnum.ROYAL_FLUSH;
-import static com.tallgeorge.simple1.deck.PokerHandEnum.STRAIGHT_FLUSH;
+import static com.tallgeorge.playingcards.deck.PokerHandEnum.FOUR_OF_A_KIND;
+import static com.tallgeorge.playingcards.deck.PokerHandEnum.FULL_HOUSE;
+import static com.tallgeorge.playingcards.deck.PokerHandEnum.ROYAL_FLUSH;
+import static com.tallgeorge.playingcards.deck.PokerHandEnum.STRAIGHT_FLUSH;
 import static org.junit.Assert.assertEquals;
 
 public class PokerHandTest {

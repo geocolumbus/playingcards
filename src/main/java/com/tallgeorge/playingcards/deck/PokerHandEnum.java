@@ -1,4 +1,4 @@
-package com.tallgeorge.simple1.deck;
+package com.tallgeorge.playingcards.deck;
 
 /**
  * An enumeration of the poker hands.

@@ -1,4 +1,4 @@
-package com.tallgeorge.simple1.deck;
+package com.tallgeorge.playingcards.deck;
 
 /**
  * An enumeration representing standard playing cards in as-shipped order.

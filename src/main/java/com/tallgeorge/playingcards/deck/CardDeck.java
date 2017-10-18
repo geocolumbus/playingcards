@@ -1,4 +1,4 @@
-package com.tallgeorge.simple1.deck;
+package com.tallgeorge.playingcards.deck;
 
 import java.util.ArrayList;
 import java.util.Collections;

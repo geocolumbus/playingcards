@@ -1,9 +1,9 @@
-package com.tallgeorge.simple1;
+package com.tallgeorge.playingcards;
 
-import com.tallgeorge.simple1.deck.CardDeck;
-import com.tallgeorge.simple1.deck.Deck;
-import com.tallgeorge.simple1.deck.Hand;
-import com.tallgeorge.simple1.deck.PokerHandEnum;
+import com.tallgeorge.playingcards.deck.CardDeck;
+import com.tallgeorge.playingcards.deck.Deck;
+import com.tallgeorge.playingcards.deck.Hand;
+import com.tallgeorge.playingcards.deck.PokerHandEnum;
 
 import java.text.DecimalFormat;
 import java.time.Duration;
@@ -26,7 +26,7 @@ public class Main {
         for (PokerHandEnum p : PokerHandEnum.values()) {
             bin.put(p, 0);
         }
-        int total = Integer.MAX_VALUE / 4096;
+        int total = Integer.MAX_VALUE / 64;
         Instant start = Instant.now();
         IntStream.range(0, total).parallel().forEach(i -> {
             Deck deck = new CardDeck();
