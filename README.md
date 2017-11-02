@@ -19,7 +19,7 @@ java -jar target/playingcards-1.0-SNAPSHOT.jar
 
 ## Results
 
-The odds of being dealt a given five card hand from a shuffled deck:
+The odds of being dealt a given five card hand from a shuffled deck. Note that "garbage" is zero because I caught every possible type of hand in my category list.
 
 ```
 Creating and evaluating 134,217,727 poker hands...
