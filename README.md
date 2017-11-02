@@ -1,6 +1,6 @@
 # A deck of cards.
 
-Building out a card game framework. Working it from a strict TDD approach as an exercise.
+Building out a card game framework. Working it from a strict TDD approach as an exercise. This program uses brute force to randomly generate millions of five card poker hands and classifies them as to type. Pretty cool that generating 134 million hands means you'll get around 21,000 Royal Flushes!
 
 ## Requirements
 
