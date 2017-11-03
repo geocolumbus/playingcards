@@ -23,20 +23,22 @@ public class Main {
      * @param args command line argument array.
      */
     public static void main(final String[] args) {
-        Map<PokerHandEnum, Integer> bin = new TreeMap<>();
-        for (PokerHandEnum p : PokerHandEnum.values()) {
-            bin.put(p, 0);
+
+        int numberOfPokerHands = Integer.MAX_VALUE / 64;
+
+        Map<PokerHandEnum, Integer> pokerHands = new TreeMap<>();
+        for (PokerHandEnum pokerHandEnum : PokerHandEnum.values()) {
+            pokerHands.put(pokerHandEnum, 0);
         }
-        int numberOfPokerHands = Integer.MAX_VALUE / 16;
         DecimalFormat formatter = new DecimalFormat("#,###");
-        System.out.println(String.format("\nCreating and evaluating %s poker hands...",formatter.format(numberOfPokerHands)));
+        System.out.println(String.format("\nCreating %s random poker hands...",formatter.format(numberOfPokerHands)));
         Instant start = Instant.now();
         IntStream.range(0, numberOfPokerHands).parallel().forEach(i -> {
             Deck deck = new CardDeck();
             deck.shuffle();
             Hand hand = deck.deal(5);
             PokerHandEnum p = PokerHandEnum.find(hand);
-            bin.put(p, bin.get(p) + 1);
+            pokerHands.put(p, pokerHands.get(p) + 1);
         });
         Instant stop = Instant.now();
 
@@ -44,10 +46,10 @@ public class Main {
         System.out.println(String.format("\nDuration was %6.3f seconds for %s iterations at %5.3f usec/iteration.\n",
                 sec, formatter.format(numberOfPokerHands), sec / numberOfPokerHands * 1e6));
 
-        bin.keySet().stream().forEach(k -> {
-            double p = (bin.get(k) * 1.0) / numberOfPokerHands * 100.0;
-            double o = (100 / p);
-            System.out.println(String.format("%16s  %9.6f (1 in %9.1f)", k, p, o));
+        pokerHands.keySet().stream().forEach(key -> {
+            double proportionOfHands = (pokerHands.get(key) * 1.0) / numberOfPokerHands * 100.0;
+            double oddsOfPokerHand = (100 / proportionOfHands);
+            System.out.println(String.format("%16s %15s  (1 in %9.1f)", key, formatter.format(pokerHands.get(key)), oddsOfPokerHand));
         });
 
     }
