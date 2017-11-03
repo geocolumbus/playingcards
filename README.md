@@ -22,20 +22,20 @@ java -jar target/playingcards-1.0-SNAPSHOT.jar
 The odds of being dealt a given five card hand from a shuffled deck. Note that "garbage" is zero because I caught every possible type of hand in my category list.
 
 ```
-Creating and evaluating 33,554,431 poker hands...
+Creating 33,554,431 random poker hands...
 
-Duration was 73.134 seconds for 33,554,431 iterations at 2.180 usec/iteration.
+Duration was 263.650 seconds for 33,554,431 iterations at 7.857 usec/iteration.
 
-     ROYAL_FLUSH              42  (1 in  798915.0)
-  STRAIGHT_FLUSH             449  (1 in   74731.5)
-  FOUR_OF_A_KIND           8,059  (1 in    4163.6)
-      FULL_HOUSE          48,337  (1 in     694.2)
-           FLUSH          65,602  (1 in     511.5)
-        STRAIGHT         118,159  (1 in     284.0)
- THREE_OF_A_KIND         706,837  (1 in      47.5)
-        TWO_PAIR       1,588,372  (1 in      21.1)
-        ONE_PAIR      13,311,357  (1 in       2.5)
-       HIGH_CARD      15,709,081  (1 in       2.1)
+     ROYAL_FLUSH              53  (1 in  633102.5)
+  STRAIGHT_FLUSH             465  (1 in   72160.1)
+  FOUR_OF_A_KIND           7,878  (1 in    4259.3)
+      FULL_HOUSE          48,237  (1 in     695.6)
+           FLUSH          65,821  (1 in     509.8)
+        STRAIGHT         119,276  (1 in     281.3)
+ THREE_OF_A_KIND         708,334  (1 in      47.4)
+        TWO_PAIR       1,593,711  (1 in      21.1)
+        ONE_PAIR      14,179,666  (1 in       2.4)
+       HIGH_CARD      16,830,990  (1 in       2.0)
          GARBAGE               0  (1 in  Infinity)
 ```
 
