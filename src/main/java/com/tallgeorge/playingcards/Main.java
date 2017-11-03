@@ -31,9 +31,9 @@ public class Main {
             pokerHands.put(pokerHandEnum, 0);
         }
         DecimalFormat formatter = new DecimalFormat("#,###");
-        System.out.println(String.format("\nCreating %s random poker hands...",formatter.format(numberOfPokerHands)));
+        System.out.println(String.format("\nCreating %s random poker hands...", formatter.format(numberOfPokerHands)));
         Instant start = Instant.now();
-        IntStream.range(0, numberOfPokerHands).parallel().forEach(i -> {
+        IntStream.range(0, numberOfPokerHands).forEach(i -> {
             Deck deck = new CardDeck();
             deck.shuffle();
             Hand hand = deck.deal(5);
