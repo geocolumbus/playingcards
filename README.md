@@ -17,6 +17,22 @@ mvn clean package
 java -jar target/playingcards-1.0-SNAPSHOT.jar
 ```
 
+## Use All The Cores!
+
+The programs's main loop takes advantage of Java 8 stream processing, and specifically by inserting .parallel() into the chain.
+
+```
+        IntStream.range(0, numberOfPokerHands).parallel().forEach(i -> {
+            Deck deck = new CardDeck();
+            deck.shuffle();
+            Hand hand = deck.deal(5);
+            PokerHandEnum p = PokerHandEnum.find(hand);
+            bin.put(p, bin.get(p) + 1);
+        });
+```
+
+On my mac, I use ```htop``` from the command line. (```brew install htop```). htop shows all the cores loading up as this program makes full use of my MacBook Pro's available cores.
+
 ## Results
 
 The odds of being dealt a given five card hand from a shuffled deck. Note that "garbage" is zero because I caught every possible type of hand in my category list.
