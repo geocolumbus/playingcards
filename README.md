@@ -6,8 +6,8 @@ For fun, I am building out a card game framework and working it from a strict TD
 
 This is what I'm running - lesser minor versions will probably work fine.
 
-* maven 3.3.9
-* java 1.8.0_101
+* maven 3.6.0
+* java 8 or greater
 
 ## Usage
 
@@ -19,24 +19,23 @@ java -jar target/playingcards-1.0-SNAPSHOT.jar
 
 ## Results
 
-The odds of being dealt a given five card hand from a shuffled deck. Note that "garbage" is zero because I caught every possible type of hand in my category list.
+The odds of being dealt a given five card hand from a shuffled deck.
 
 ```
-Creating 33,554,431 random poker hands...
+Creating 2,147,483,647 random poker hands...
 
-Duration was 263.650 seconds for 33,554,431 iterations at 7.857 usec/iteration.
+Duration was 19033.861 seconds for 2,147,483,647 iterations at 8.863 usec/iteration.
 
-     ROYAL_FLUSH              53  (1 in  633102.5)
-  STRAIGHT_FLUSH             465  (1 in   72160.1)
-  FOUR_OF_A_KIND           7,878  (1 in    4259.3)
-      FULL_HOUSE          48,237  (1 in     695.6)
-           FLUSH          65,821  (1 in     509.8)
-        STRAIGHT         119,276  (1 in     281.3)
- THREE_OF_A_KIND         708,334  (1 in      47.4)
-        TWO_PAIR       1,593,711  (1 in      21.1)
-        ONE_PAIR      14,179,666  (1 in       2.4)
-       HIGH_CARD      16,830,990  (1 in       2.0)
-         GARBAGE               0  (1 in  Infinity)
+     ROYAL_FLUSH           3,247  (1 in  661373.7)
+  STRAIGHT_FLUSH          29,976  (1 in   71639.1)
+  FOUR_OF_A_KIND         515,501  (1 in    4164.8)
+      FULL_HOUSE       3,093,416  (1 in     693.2)
+           FLUSH       4,219,124  (1 in     508.0)
+        STRAIGHT       7,584,587  (1 in     282.1)
+ THREE_OF_A_KIND      45,365,133  (1 in      46.3)
+        TWO_PAIR     102,100,220  (1 in      20.0)
+        ONE_PAIR     907,467,797  (1 in       1.4)
+       HIGH_CARD   1,077,104,646  (1 in       1.0)
 ```
 
 Compare this result with the official odds of being dealt a hand. The more hands tried, the more accurate the results.

@@ -19,12 +19,11 @@ public class Main {
 
     /**
      * Main entrance to the application.
-     *
      * @param args command line argument array.
      */
     public static void main(final String[] args) {
 
-        int numberOfPokerHands = Integer.MAX_VALUE / 64;
+        int numberOfPokerHands = Integer.MAX_VALUE;
 
         Map<PokerHandEnum, Integer> pokerHands = new TreeMap<>();
         for (PokerHandEnum pokerHandEnum : PokerHandEnum.values()) {
@@ -44,12 +43,15 @@ public class Main {
 
         Double sec = Duration.between(start, stop).toMillis() / 1000.0;
         System.out.println(String.format("\nDuration was %6.3f seconds for %s iterations at %5.3f usec/iteration.\n",
-                sec, formatter.format(numberOfPokerHands), sec / numberOfPokerHands * 1e6));
+            sec, formatter.format(numberOfPokerHands), sec / numberOfPokerHands * 1e6));
 
         pokerHands.keySet().stream().forEach(key -> {
-            double proportionOfHands = (pokerHands.get(key) * 1.0) / numberOfPokerHands * 100.0;
-            double oddsOfPokerHand = (100 / proportionOfHands);
-            System.out.println(String.format("%16s %15s  (1 in %9.1f)", key, formatter.format(pokerHands.get(key)), oddsOfPokerHand));
+            double successfulHands = pokerHands.get(key) * 1.0;
+            double unsuccessfulHands = numberOfPokerHands - successfulHands;
+            double oddsOfPokerHand = unsuccessfulHands / successfulHands;
+            if (key != PokerHandEnum.GARBAGE) {
+                System.out.println(String.format("%16s %15s  (1 in %9.1f)", key, formatter.format(pokerHands.get(key)), oddsOfPokerHand));
+            }
         });
 
     }
